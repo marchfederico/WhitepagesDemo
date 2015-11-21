@@ -1,0 +1,54 @@
+  <div class="container" ng-controller="WPDCtrl">
+    <div class="header">
+        <div class ="heading">
+            The Power to Know What
+        </div>
+        <div class = "sub-heading">
+            Whitepages and Tropo are working together to connect you with your customers across all channels.
+        </div>
+    </div>
+  
+    <div class="clearfix mainBackground">
+        <div class="floatLeft">
+             <div class="data-item">
+                    <div class="title">Country Code</div>
+                    <div class="data" name="countyCode" ng-model="call.countyCode">{{call.countyCode}}</div>
+                </div>
+                <div class="data-item">
+                    <div class="title">Line Type</div>
+                    <div class="data" name="lineType" ng-model="call.lineType">{{call.lineType}}</div>
+                </div>
+                <div class="data-item">
+                    <div class="title">Carrier</div>
+                    <div class="data" name="carrier" ng-model="call.carrier">{{call.carrier}}</div>
+                </div>
+                <div class="data-item">
+                    <div class="title">Valid Number</div>
+                    <div class="data" name="validNumber" ng-model="call.validNumber">{{call.validNumber}}</div>
+                </div>
+                <div class="data-item">
+                    <div class="title">Prepaid Number</div>
+                    <div class="data" name="prepaidNumber" ng-model="call.prepaidNumber">{{call.prepaidNumber}}</div>
+                </div>
+        </div>
+         
+        <div class="floatRight">
+            
+                <div class="data-item">
+                    <div class="title">Name</div>
+                    <div class="data" name="callerName" >{{call.callerName}}</div>
+
+                </div>
+
+                <div class="data-item">
+                    <div class="title">Address</div>
+                    <div class="data" name="address" ng-model="call.address"><div class="datatext">{{call.address}}</div></div>
+                     <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+                </div>
+
+               
+        </div>
+    </div>
+    <div class ="imageFooter"> 
+    </div>
+</div>
