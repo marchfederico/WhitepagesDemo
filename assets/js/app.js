@@ -20,7 +20,7 @@ WhitePagesDemoApp.controller('WPDCtrl', ['$scope', '$rootScope', '$sails','uiGma
 
 
 
-   $https.get('http://maps.google.com/maps/api/geocode/json?address=98199&sensor=false').success(function(mapData) {
+   $http.get('https://maps.google.com/maps/api/geocode/json?address=98199&sensor=false').success(function(mapData) {
       console.dir(mapData)
       if (mapData.results[0].geometry.location)
       {
@@ -76,7 +76,7 @@ WhitePagesDemoApp.controller('WPDCtrl', ['$scope', '$rootScope', '$sails','uiGma
 
       if (message.verb === "created") {
         $scope.call = message.data;
-        $https.get('http://maps.google.com/maps/api/geocode/json?address='+$scope.call.address+'&sensor=false').success(function(mapData) {
+        $http.get('https://maps.google.com/maps/api/geocode/json?address='+$scope.call.address+'&sensor=false').success(function(mapData) {
 
           if (mapData.results[0].geometry.location)
           {
