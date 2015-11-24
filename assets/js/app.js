@@ -49,7 +49,7 @@ WhitePagesDemoApp.controller('WPDCtrl', ['$scope', '$rootScope', '$sails','uiGma
       console.log("loaded!")
     });
 
-  io.socket.on("connect",function(msg){
+  $sails.on("connect",function(msg){
 
     console.log('connected')
     $sails.get("/call")
