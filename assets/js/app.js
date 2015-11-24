@@ -18,9 +18,9 @@ WhitePagesDemoApp.controller('WPDCtrl', ['$scope', '$rootScope', '$sails','uiGma
    $scope.map = {};
    $scope.map.center = {};
 
-     
-  
-   $http.get('http://maps.google.com/maps/api/geocode/json?address=98199&sensor=false').success(function(mapData) {
+
+
+   $https.get('http://maps.google.com/maps/api/geocode/json?address=98199&sensor=false').success(function(mapData) {
       console.dir(mapData)
       if (mapData.results[0].geometry.location)
       {
@@ -30,10 +30,10 @@ WhitePagesDemoApp.controller('WPDCtrl', ['$scope', '$rootScope', '$sails','uiGma
       }
     });
 
-   
+
    $scope.map.zoom=9
 
-  $scope.call = { 
+  $scope.call = {
           countyCode: '--',
           lineType: '--',
           carrier: '--',
@@ -55,16 +55,16 @@ WhitePagesDemoApp.controller('WPDCtrl', ['$scope', '$rootScope', '$sails','uiGma
     $sails.get("/call")
       .then(function(resp){
         console.log("sending get")
-          
+
       }, function(resp){
         alert('Houston, we got a problem!');
       });
   })
-  
+
 	$sails.get("/call")
       .then(function(resp){
-      	
-          
+
+
       }, function(resp){
         alert('Houston, we got a problem!');
       });
@@ -73,11 +73,11 @@ WhitePagesDemoApp.controller('WPDCtrl', ['$scope', '$rootScope', '$sails','uiGma
   // Watching for updates
     var callHandler = $sails.on("call", function (message) {
     	console.log("got a socket.io message")
-    	
+
       if (message.verb === "created") {
         $scope.call = message.data;
-        $http.get('http://maps.google.com/maps/api/geocode/json?address='+$scope.call.address+'&sensor=false').success(function(mapData) {
-    
+        $https.get('http://maps.google.com/maps/api/geocode/json?address='+$scope.call.address+'&sensor=false').success(function(mapData) {
+
           if (mapData.results[0].geometry.location)
           {
             $scope.map.center.latitude =  mapData.results[0].geometry.location.lat;
@@ -85,8 +85,8 @@ WhitePagesDemoApp.controller('WPDCtrl', ['$scope', '$rootScope', '$sails','uiGma
             $scope.map.zoom = 9
           }
         });
-        
-        
+
+
       }
     });
 
