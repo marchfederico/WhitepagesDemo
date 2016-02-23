@@ -40,24 +40,21 @@ WhitePagesDemoApp.controller('WPDCtrl', ['$scope', '$rootScope', '$sails','uiGma
           validNumber: '--',
           prepaidNumber: '--',
           callerName: '--',
-          callerName: '--',
           address: "--"
         }
 
 
   uiGmapGoogleMapApi.then(function(maps) {
-      console.log("loaded!")
+
     });
 
   $sails.on("connect",function(msg){
 
-    console.log('connected')
     $sails.get("/call")
       .then(function(resp){
-        console.log("sending get")
 
       }, function(resp){
-        alert('Houston, we got a problem!');
+
       });
   })
 
@@ -66,7 +63,7 @@ WhitePagesDemoApp.controller('WPDCtrl', ['$scope', '$rootScope', '$sails','uiGma
 
 
       }, function(resp){
-        alert('Houston, we got a problem!');
+
       });
 
 

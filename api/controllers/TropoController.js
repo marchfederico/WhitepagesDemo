@@ -6,7 +6,7 @@
  */
 // object to hold calls
 var gCurrentCalls={}
-
+var WhitePagesAPIKey = sails.config.whitepages.WHITEPAGES_API_KEY;
 var tropowebapi = require('tropo-webapi');
 var request = require('request');
 var changeCase = require('change-case')
@@ -30,7 +30,7 @@ module.exports = {
         }
 		    if (callerNumber)
 		    {
-  		      request.get('https://proapi.whitepages.com/2.1/phone.json?api_key=916810dafa2f897e53540ecefb2b07f8&phone_number='+callerNumber,
+  		      request.get('https://proapi.whitepages.com/2.1/phone.json?api_key='+WhitePagesAPIKey+'&phone_number='+callerNumber,
   		    	function (error, response, body) {
           				//Check for error
           				if(error){
