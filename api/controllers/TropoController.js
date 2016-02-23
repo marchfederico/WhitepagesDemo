@@ -5,12 +5,13 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 // object to hold calls
+
 var gCurrentCalls={}
 var WhitePagesAPIKey = sails.config.whitepages.WHITEPAGES_API_KEY;
 var tropowebapi = require('tropo-webapi');
 var request = require('request');
 var changeCase = require('change-case')
-
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 module.exports = {
 
 	handleCall: function (req, res) {
@@ -30,6 +31,7 @@ module.exports = {
         }
 		    if (callerNumber)
 		    {
+            console.log("API key = "+WhitePagesAPIKey)
   		      request.get('https://proapi.whitepages.com/2.1/phone.json?api_key='+WhitePagesAPIKey+'&phone_number='+callerNumber,
   		    	function (error, response, body) {
           				//Check for error
@@ -54,13 +56,13 @@ module.exports = {
       				          		carrier: c.carrier,
       				          		validNumber: c.is_valid  ? 'Yes' : 'No',
       				          		prepaidNumber: c.is_prepaid  ? 'Yes' : 'No',
-      				          		callerName: c.belongs_to[0] ? c.belongs_to[0].name : 'Unknown',
+      				          		callerName: c.belongs_to ? c.belongs_to[0].name : 'Unknown',
       				          		address: b.address
 
               					}
 
 
-                        if (c.belongs_to[0] && c.belongs_to[0].type =="Full")
+                        if (c.belongs_to && c.belongs_to[0].type =="Full")
                           calldata.callerName = c.belongs_to[0].names[0].first_name+' '+c.belongs_to[0].names[0].last_name
 
       						   	  Call.create(calldata).exec(function(err, call) {
