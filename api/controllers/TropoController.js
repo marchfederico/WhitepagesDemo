@@ -81,15 +81,16 @@ module.exports = {
 
 
   			    var tropo = new tropowebapi.TropoWebAPI();
-  			    tropo.say("Welcome to the White Pages and Troh poh Demo,, please hold");
+  			    tropo.say("Thank you for dialing the Tropo and Whitepages Demo. Your information is now displayed on the screen. If we determine your phone is SMS enabled you will receive a text message shortly.");
   			    var transferSay = new Say("You are now being transfered");
   			    tropo.on("transfer", null, "/transfer", null, transferSay, null, null, null);
   			    tropo.on("hangup", null, "/hangup", null, null, null, null, null);
   			    tropo.on("error", null, "/error", null, null, null, null, null);
   			    tropo.on("incomplete", null, "/incomplete", null, null, null, null, null);
   			    tropo.on("continue", null, "/continue", null, null, null, null, null);
-
-  			    tropo.say("http://phono.com/audio/holdmusic.mp3", null, null, null, null, null, "transfer");
+            tropo.message("We have extended wait times for voice call support, may we expedite your support by helping you via SMS message? Powered by Whitepages Pro and Tropo",
+              callerNumber, false, null, null, null, 'SMS', null, null, null)
+  			   // tropo.say("http://phono.com/audio/holdmusic.mp3", null, null, null, null, null, "transfer");
   			    res.writeHead(200, {'Content-Type': 'application/json'});
   			    console.log("Sending: \n\n"+tropowebapi.TropoJSON(tropo)+"\n\n")
   			    return res.end(tropowebapi.TropoJSON(tropo));
