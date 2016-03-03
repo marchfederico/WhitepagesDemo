@@ -31,6 +31,7 @@ module.exports = {
         }
 		    if (callerNumber)
 		    {
+          req.calledNumber = callerNumber
             console.log("API key = "+WhitePagesAPIKey)
   		      request.get('https://proapi.whitepages.com/2.1/phone.json?api_key='+WhitePagesAPIKey+'&phone_number='+callerNumber,
   		    	function (error, response, body) {
@@ -45,11 +46,14 @@ module.exports = {
           				}
 
           				jsonBody = JSON.parse(body)
+                  console.log(body)
           				if (jsonBody.results)
           				{
           					    c = jsonBody.results[0]
-                        b = c.best_location;
 
+                    b = c.associated_locations[0];
+                    newaddress = b.city + ", "+b.state_code+", "+b.country_code+" "+b.postal_code
+                    console.log(newaddress)
       				    	   calldata = {
       				          		countyCode: '+'+c.country_calling_code,
       				          		lineType:  c.line_type,
@@ -57,7 +61,7 @@ module.exports = {
       				          		validNumber: c.is_valid  ? 'Yes' : 'No',
       				          		prepaidNumber: c.is_prepaid  ? 'Yes' : 'No',
       				          		callerName: c.belongs_to ? c.belongs_to[0].name : 'Unknown',
-      				          		address: b.address
+      				          		address: newaddress
 
               					}
 
