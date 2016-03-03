@@ -59,11 +59,11 @@ module.exports = {
                       if (c.belongs_to.length)
                         newname =  c.belongs_to[0].name
                       else
-                        newname =  'Unknown'
+                        newname =  '-'
 
                     }
                     else
-                      newname =  'Unknown'
+                      newname =  '-'
 
       				    	   calldata = {
       				          		countyCode: '+'+c.country_calling_code,
@@ -77,7 +77,7 @@ module.exports = {
               					}
 
 
-                        if (c.belongs_to && c.belongs_to[0].type =="Full")
+                        if (c.belongs_to && c.belongs_to.length && c.belongs_to[0].type =="Full")
                           calldata.callerName = c.belongs_to[0].names[0].first_name+' '+c.belongs_to[0].names[0].last_name
 
       						   	  Call.create(calldata).exec(function(err, call) {
