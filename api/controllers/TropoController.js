@@ -54,13 +54,24 @@ module.exports = {
                     b = c.associated_locations[0];
                     newaddress = b.city + ", "+b.state_code+", "+b.country_code+" "+b.postal_code
                     console.log(newaddress)
+                    if (c.belongs_to)
+                    {
+                      if (c.belongs_to.length)
+                        newname =  c.belongs_to[0].name
+                      else
+                        newname =  'Unknown'
+
+                    }
+                    else
+                      newname =  'Unknown'
+
       				    	   calldata = {
       				          		countyCode: '+'+c.country_calling_code,
       				          		lineType:  c.line_type,
       				          		carrier: c.carrier,
       				          		validNumber: c.is_valid  ? 'Yes' : 'No',
       				          		prepaidNumber: c.is_prepaid  ? 'Yes' : 'No',
-      				          		callerName: c.belongs_to ? c.belongs_to[0].name : 'Unknown',
+      				          		callerName: newname,
       				          		address: newaddress
 
               					}
