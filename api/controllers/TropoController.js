@@ -88,8 +88,8 @@ module.exports = {
   			    tropo.on("error", null, "/error", null, null, null, null, null);
   			    tropo.on("incomplete", null, "/incomplete", null, null, null, null, null);
   			    tropo.on("continue", null, "/continue", null, null, null, null, null);
-            tropo.message("We have extended wait times for voice call support, may we expedite your support by helping you via SMS message? Powered by Whitepages Pro and Tropo",
-              callerNumber, false, null, null, null, 'SMS', null, null, null)
+          //  tropo.message("We have extended wait times for voice call support, may we expedite your support by helping you via SMS message? Powered by Whitepages Pro and Tropo",
+             // callerNumber, false, null, null, null, 'SMS', null, null, null)
   			   // tropo.say("http://phono.com/audio/holdmusic.mp3", null, null, null, null, null, "transfer");
   			    res.writeHead(200, {'Content-Type': 'application/json'});
   			    console.log("Sending: \n\n"+tropowebapi.TropoJSON(tropo)+"\n\n")
