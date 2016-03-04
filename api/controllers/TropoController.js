@@ -68,22 +68,24 @@ module.exports = {
                     b = c.associated_locations[0];
                     newaddress = b.city + ", "+b.state_code+", "+b.country_code+" "+b.postal_code
                     console.log(newaddress)
-                    if (c.belongs_to)
+                    newname = '-'
+                    if (c.belongs_to && c.belongs_to.length)
                     {
-                      if (c.belongs_to.length)
-                        newname =  c.belongs_to[0].name
-                      else
-                        newname =  '-'
+                       if (c.belongs_to[0].name) {
+                          newname = c.belongs_to[0].name
+                       }
+                       else if (c.belongs_to[0].names && c.belongs_to[0].names.lemgth) {
+                           person = c.belongs_to[0].names[0]
+                           newname = person.first_name + ' ' + person.last_name
+                       }
 
                     }
+
                     reputation = '-'
                     if (c.reputation)
                     {
-
                       reputation = c.reputation.level
                     }
-                    else
-                      newname =  '-'
 
                     donotcall = ''+ c.do_not_call
                     donotcall = donotcall.charAt(0).toUpperCase() + donotcall.slice(1);
@@ -97,11 +99,7 @@ module.exports = {
       				          		address: newaddress
 
               					}
-
-
-                        if (c.belongs_to && c.belongs_to.length && c.belongs_to[0].type =="Full")
-                          calldata.callerName = c.belongs_to[0].names[0].first_name+' '+c.belongs_to[0].names[0].last_name
-
+                    
       						   	  Call.create(calldata).exec(function(err, call) {
       				      				if(err) throw err;
       				      				Call.publishCreate(call)
