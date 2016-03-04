@@ -86,7 +86,7 @@ module.exports = {
                       newname =  '-'
 
                     donotcall = ''+ c.do_not_call
-                    donotcall = donotcall.charAt(0).toUpperCase() + string.slice(1);
+                    donotcall = donotcall.charAt(0).toUpperCase() + donotcall.slice(1);
       				    	   calldata = {
       				          		countyCode: donotcall,
       				          		lineType:  c.line_type,
