@@ -19,15 +19,29 @@ module.exports = {
 		    console.log("new post!")
     		console.dir(req.body,null,2)
 		    console.log("--------------")
+/*
+ { calledID: '2892120194',
+ calledName: '12892120194',
+ callerID: '9199278209',
+ callerName: 'Cisco Systems',
+ channel: 'VOICE',
+ network: 'SIP',
+ initialText: null,
+ id: '446dd978465e68cc0835f47829dc79ec',
+ sessionId: '775c567418304cd1656a5f691caf5968',
+ answeredTime: null,
+ tag: null,
+ userType: null }
+ */
 
 		    var sessionId
-
-        if (req.body.session)
-            sessionId = req.body.session.id
+        var calldata={}
+        if (req.body.sessionId)
+            sessionId = req.body.sessionId
         var callerNumber
 
         if (sessionId) {
-		        callerNumber = req.body.session.from.id
+		        callerNumber = req.body.callerID
         }
 		    if (callerNumber)
 		    {
@@ -89,31 +103,9 @@ module.exports = {
 
 			   }
 
-		    if (sessionId)
-		    {
-  		    	gCurrentCalls[sessionId] = req.body.session
-  		    	gCurrentCalls[sessionId].state = 'ANSWERED'
 
+      			return res.end(JSON.stringify(calldata))
 
-  			    var tropo = new tropowebapi.TropoWebAPI();
-  			    tropo.say("Thank you for dialing the Tropo and Whitepages Demo. Your information is now displayed on the screen. If we determine your phone is SMS enabled you will receive a text message shortly.");
-  			    var transferSay = new Say("You are now being transfered");
-  			    tropo.on("transfer", null, "/transfer", null, transferSay, null, null, null);
-  			    tropo.on("hangup", null, "/hangup", null, null, null, null, null);
-  			    tropo.on("error", null, "/error", null, null, null, null, null);
-  			    tropo.on("incomplete", null, "/incomplete", null, null, null, null, null);
-  			    tropo.on("continue", null, "/continue", null, null, null, null, null);
-          //  tropo.message("We have extended wait times for voice call support, may we expedite your support by helping you via SMS message? Powered by Whitepages Pro and Tropo",
-             // callerNumber, false, null, null, null, 'SMS', null, null, null)
-  			   // tropo.say("http://phono.com/audio/holdmusic.mp3", null, null, null, null, null, "transfer");
-  			    res.writeHead(200, {'Content-Type': 'application/json'});
-  			    console.log("Sending: \n\n"+tropowebapi.TropoJSON(tropo)+"\n\n")
-  			    return res.end(tropowebapi.TropoJSON(tropo));
-  			 }
-			  else
-    		{
-      			return res.end('test')
-    		}
 
 	},
 
