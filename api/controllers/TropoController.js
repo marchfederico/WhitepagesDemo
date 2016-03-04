@@ -85,8 +85,10 @@ module.exports = {
                     else
                       newname =  '-'
 
+                    donotcall = ''+ c.do_not_call
+                    donotcall = donotcall.charAt(0).toUpperCase() + string.slice(1);
       				    	   calldata = {
-      				          		countyCode: ''+ c.do_not_call,
+      				          		countyCode: donotcall,
       				          		lineType:  c.line_type,
       				          		carrier: c.carrier,
       				          		validNumber: reputation,
