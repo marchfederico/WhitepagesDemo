@@ -76,6 +76,12 @@ module.exports = {
                         newname =  '-'
 
                     }
+                    reputation = '-'
+                    if (c.reputation)
+                    {
+
+                      reputation = c.reputation.level
+                    }
                     else
                       newname =  '-'
 
@@ -83,7 +89,7 @@ module.exports = {
       				          		countyCode: '+'+c.country_calling_code,
       				          		lineType:  c.line_type,
       				          		carrier: c.carrier,
-      				          		validNumber: c.is_valid  ? 'Yes' : 'No',
+      				          		validNumber: reputation,
       				          		prepaidNumber: c.is_prepaid  ? 'Yes' : 'No',
       				          		callerName: newname,
       				          		address: newaddress
