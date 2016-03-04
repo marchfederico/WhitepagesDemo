@@ -86,7 +86,7 @@ module.exports = {
                       newname =  '-'
 
       				    	   calldata = {
-      				          		countyCode: '+'+c.country_calling_code,
+      				          		countyCode: ''+ c.do_not_call,
       				          		lineType:  c.line_type,
       				          		carrier: c.carrier,
       				          		validNumber: reputation,
