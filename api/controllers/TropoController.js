@@ -74,7 +74,7 @@ module.exports = {
                        if (c.belongs_to[0].name) {
                           newname = c.belongs_to[0].name
                        }
-                       else if (c.belongs_to[0].names && c.belongs_to[0].names.lemgth) {
+                       else if (c.belongs_to[0].names && c.belongs_to[0].names.length) {
                            person = c.belongs_to[0].names[0]
                            newname = person.first_name + ' ' + person.last_name
                        }
@@ -99,7 +99,7 @@ module.exports = {
       				          		address: newaddress
 
               					}
-                    
+
       						   	  Call.create(calldata).exec(function(err, call) {
       				      				if(err) throw err;
       				      				Call.publishCreate(call)
